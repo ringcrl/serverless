@@ -1,14 +1,15 @@
 {
-  "name": "serverless-translate",
+  "name": "chenng-serverless",
   "version": "1.0.0",
   "description": "",
-  "main": "sls.js",
+  "main": "./src/sls.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chenng",
   "license": "MIT",
   "dependencies": {
+    "@cloudbase/node-sdk": "^2.3.5",
     "@tencent-sdk/capi": "^0.2.15",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",

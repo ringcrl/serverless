@@ -1,15 +1,13 @@
 component: express # (必选) 组件名称，在该实例中为 express
-name: translate-api # (必选) 组件实例名称
-org: appid # (可选) 用于记录组织信息，默认值为您的腾讯云账户 appid，必须为字符串
-app: translate-api # (可选) 用于记录组织信息，默认与 name 相同，必须为字符串
-stage: dev  # (可选) 用于区分环境信息，默认值是 dev
+name: chenng # (必选) 组件实例名称
+app: serverless
 
 inputs:
   src:
-    src: ./src # 第一种为 string 时，会打包 src 对应目录下的代码上传到默认 cos 上
+    src: ./ # 第一种为 string 时，会打包 src 对应目录下的代码上传到默认 cos 上
     exclude: # 被排除的文件或目录
       - .env
-  region: ap-beijing # 云函数所在区域
+  region: ap-guangzhou # 云函数所在区域
   runtime: Nodejs10.15 # 运行环境
   functionConf: # 函数配置相关
     role: QCS_SCFExcuteRole
@@ -24,6 +22,3 @@ inputs:
       - http
       - https
     environment: release # 发布环境，目前支持三种发布环境: test（测试）, prepub（预发布） 与 release（发布）
-    endpoints:
-      - path: /index
-        method: ANY
