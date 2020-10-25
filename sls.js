@@ -3,7 +3,10 @@ const { Capi } = require('@tencent-sdk/capi')
 const path = require('path')
 const bodyParser = require('body-parser')
 const cloudbaseSDK = require('@cloudbase/node-sdk')
+const cors = require('cors')
 const app = express()
+
+app.use(cors())
 
 if (!process.env.TENCENT_SECRET_ID) {
   require('dotenv').config({ path: path.resolve(__dirname, '.env') })
