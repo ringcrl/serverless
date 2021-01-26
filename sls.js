@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const useragent = require('express-useragent');
+
 const handler = require('./handler');
 
 const app = express();
@@ -13,6 +15,7 @@ if (!process.env.TENCENT_SECRET_ID) {
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(useragent.express());
 
 // 根路由
 app.get('/', handler.root.handler);
