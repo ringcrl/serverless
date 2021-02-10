@@ -4,6 +4,8 @@ async function handler(req, res) {
   try {
     let { schemeId } = req.params;
 
+    schemeId = decodeURIComponent(schemeId);
+
     if (!req.useragent.isMobile) {
       switch (schemeId) {
         case 'WeRead':
@@ -26,12 +28,20 @@ async function handler(req, res) {
           res.status = 302;
           res.redirect(`${'https://'}${'km'}${'oa'}${'com'}`);
           return;
+        case 'qqmusic':
+          res.status = 302;
+          res.redirect('qqmusicmac://1');
+          return;
+        case 'sinaweibo://discover':
+          res.status = 302;
+          res.redirect('https://s.weibo.com/top/summary');
+          return;
         default:
           noop();
       }
     }
 
-    if (!schemeId.endsWith('://')) {
+    if (!schemeId.includes('://')) {
       schemeId += '://';
     }
 
