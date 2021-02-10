@@ -18,6 +18,10 @@ async function handler(req, res) {
           res.status = 302;
           res.redirect('https://www.youtube.com/');
           return;
+        case 'Twitter':
+          res.status = 302;
+          res.redirect('https://twitter.com/home');
+          return;
         default:
           noop();
       }
