@@ -26,7 +26,7 @@ async function handler(req, res) {
           return;
         case `${'wxef5e7e4'}${'01d2565f7'}`:
           res.status = 302;
-          res.redirect(`${'https://'}${'km'}${'oa'}${'com'}`);
+          res.redirect(`${'https://'}${'km'}.${'oa'}.${'com'}`);
           return;
         case 'qqmusic':
           res.status = 302;
