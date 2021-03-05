@@ -2,9 +2,9 @@
 
 云函数域名：https://service-rv6yi1om-1257430323.gz.apigw.tencentcs.com
 
-CName域名：https://static.chenng.cn
+CNAME 域名：https://static.chenng.cn
 
-路由详见：`sls.js`
+路由参考：`https://static.chenng.cn/scheme/bilibili`，详见：`sls.js`
 
 ```sh
 # 本地调试

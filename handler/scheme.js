@@ -6,31 +6,36 @@ async function handler(req, res) {
 
     schemeId = decodeURIComponent(schemeId);
 
+    if (!schemeId.includes('://')) {
+      schemeId += '://';
+    }
+
     if (!req.useragent.isMobile) {
+      // PC端
       switch (schemeId) {
-        case 'WeRead':
+        case 'WeRead://':
           res.status = 302;
           res.redirect('https://weread.qq.com/');
           return;
-        case 'bilibili':
+        case 'bilibili://':
           res.status = 302;
           res.redirect('https://www.bilibili.com/');
           return;
-        case 'youtube':
+        case 'youtube://':
           res.status = 302;
           res.redirect('https://www.youtube.com/');
           return;
-        case 'Twitter':
+        case 'Twitter://':
           res.status = 302;
           res.redirect('https://twitter.com/home');
           return;
-        case `${'wxef5e7e4'}${'01d2565f7'}`:
+        case `${'wxef5e7e4'}${'01d2565f7'}://`:
           res.status = 302;
           res.redirect(`${'https://'}${'km'}.${'oa'}.${'com'}`);
           return;
-        case 'qqmusic':
+        case 'qqmusic://':
           res.status = 302;
-          res.redirect('qqmusicmac://1');
+          res.redirect('qqmusicmac://');
           return;
         case 'sinaweibo://discover':
           res.status = 302;
@@ -39,14 +44,18 @@ async function handler(req, res) {
         default:
           noop();
       }
+    } else {
+      // 移动端
+      switch (schemeId) {
+        case `${'wxef5e7e4'}${'01d2565f7'}://`:
+          res.status = 302;
+          res.redirect(`${'wxef5e7e4'}${'01d2565f7'}://1`);
+          return;
+        default:
+          res.status = 302;
+          res.redirect(`${schemeId}`);
+      }
     }
-
-    if (!schemeId.includes('://')) {
-      schemeId += '://';
-    }
-
-    res.status = 302;
-    res.redirect(`${schemeId}1`);
   } catch (err) {
     res.send(err.message);
   }
