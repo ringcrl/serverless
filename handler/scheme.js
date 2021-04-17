@@ -41,6 +41,10 @@ async function handler(req, res) {
           res.status = 302;
           res.redirect('https://s.weibo.com/top/summary');
           return;
+        case 'tophub://ranklist':
+          res.status = 302;
+          res.redirect('https://tophub.today/');
+          return;
         default:
           noop();
       }
