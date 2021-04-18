@@ -29,7 +29,7 @@ app.post('/api/words/set', handler.words.set);
 app.post('/api/words/delete', handler.words.del);
 
 // scheme跳转
-app.get('/scheme/:schemeId', handler.scheme.handler);
+app.get('/s/:schemeId', handler.scheme.handler);
 
 const PORT = 8080;
 app.listen(PORT);

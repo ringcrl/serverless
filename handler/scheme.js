@@ -1,63 +1,64 @@
 function noop() {}
 
+const KM = `${'wxef5e7e4'}${'01d2565f7'}://`;
+const TOPHUB = 'tophub://ranklist';
+const EU_DIC = 'eudic://';
+const WE_READ = 'WeRead://';
+
+function getHandledScheme(schemeId) {
+  let newSchemeId;
+  switch (schemeId) {
+    case 'km':
+      return KM;
+    case 'tophub':
+      return TOPHUB;
+    case 'dic':
+      return EU_DIC;
+    case 'read':
+      return WE_READ;
+    default:
+      newSchemeId = decodeURIComponent(schemeId);
+      if (!newSchemeId.includes('://')) {
+        newSchemeId += '://';
+      }
+      return newSchemeId;
+  }
+}
+
 async function handler(req, res) {
   try {
-    let { schemeId } = req.params;
+    const { schemeId } = req.params;
 
-    schemeId = decodeURIComponent(schemeId);
-
-    if (!schemeId.includes('://')) {
-      schemeId += '://';
-    }
+    const handledSchemeId = getHandledScheme(schemeId);
 
     if (!req.useragent.isMobile) {
       // PC端
-      switch (schemeId) {
-        case 'WeRead://':
+      switch (handledSchemeId) {
+        case WE_READ:
           res.status = 302;
           res.redirect('https://weread.qq.com/');
-          return;
-        case 'bilibili://':
-          res.status = 302;
-          res.redirect('https://www.bilibili.com/');
-          return;
-        case 'youtube://':
-          res.status = 302;
-          res.redirect('https://www.youtube.com/');
-          return;
-        case 'Twitter://':
-          res.status = 302;
-          res.redirect('https://twitter.com/home');
-          return;
-        case `${'wxef5e7e4'}${'01d2565f7'}://`:
+          break;
+        case KM:
           res.status = 302;
           res.redirect(`${'https://'}${'km'}.${'oa'}.${'com'}`);
           return;
-        case 'qqmusic://':
-          res.status = 302;
-          res.redirect('qqmusicmac://');
-          return;
-        case 'sinaweibo://discover':
-          res.status = 302;
-          res.redirect('https://s.weibo.com/top/summary');
-          return;
-        case 'tophub://ranklist':
+        case TOPHUB:
           res.status = 302;
           res.redirect('https://tophub.today/');
-          return;
+          break;
         default:
           noop();
       }
     } else {
       // 移动端
-      switch (schemeId) {
-        case `${'wxef5e7e4'}${'01d2565f7'}://`:
+      switch (handledSchemeId) {
+        case KM:
           res.status = 302;
-          res.redirect(`${'wxef5e7e4'}${'01d2565f7'}://1`);
-          return;
+          res.redirect(`${KM}1`);
+          break;
         default:
           res.status = 302;
-          res.redirect(`${schemeId}`);
+          res.redirect(`${handledSchemeId}`);
       }
     }
   } catch (err) {
